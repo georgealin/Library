@@ -5,9 +5,370 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Library</title>
     <link rel="stylesheet" href="./style.css">
-    <script src="./script.js"></script>
+
 </head>
 <body>
-    
+    <div id="header">
+        <div id="left_header">
+            <img src="" alt="logo">
+            <div>My Library</div>
+        </div>
+        <div id="right_header">
+            <button>Log In</button>
+            <button>Sign In</button>
+        </div>
+    </div>
+    <div id="container">
+        <div id="upper_container">
+            <div id="status">
+                <div id="read"></div>
+                <div>Read</div>
+                <div id="not_read"></div>
+                <div>Not Read</div>
+            </div>
+            <form action="">
+                <label for="order_by">Order By:</label>
+                <select name="order_by" id="order_by">
+                    <option value="added_date">Added Date</option>
+                    <option value="publish_date">Publish Date</option>
+                    <option value="book_name">Book Name</option>
+                    <option value="author_name">Author Name</option>
+                </select>
+                <select name="order" id="order">
+                    <option value="ascendent">Asc</option>
+                    <option value="descendent">Desc</option>
+                </select>
+            </form>
+        </div>
+        <div id="add_book">
+            <dialog id="add_book">
+                <form id="book_dialog">
+                    <div class="dialog_header">
+                        <div>Add new book</div>
+                        <button id="xBtn">X</button>
+                    </div>
+                    <div class="dialog_container">
+                        <div>
+                            <label for="dialog_book_title">Book Name</label>
+                            <input type="text" name="book_title" id="dialog_book_title">
+                        </div>
+                        <div>
+                            <label for="dialog_book_author">Book Author</label>
+                            <input type="text" name="book_author" id="dialog_book_author">
+                        </div>
+                        <div>
+                            <label for="dialog_publish_date">Publish Date</label>
+                            <input type="date" name="publish_date" id="dialog_publish_date">
+                        </div>
+                        <div>
+                            <label for="dialog_number_of_pages">Number of Pages</label>
+                            <input type="number" name="number_of_pages" id="dialog_number_of_pages">
+                        </div>
+                        <div>
+                            <label for="dialog_number_of_read_pages">Number of Read Pages</label>
+                            <input type="number" name="number_of_read_pages" id="dialog_number_of_read_pages">
+                        </div>
+                        <div>
+                            <label for="readNotRead">Read or Not Read</label>
+                            <select name="readNotRead" id="readNotRead">
+                                <option value="Read">Read</option>
+                                <option value="Not Read">Not Read</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="dialog_footer">
+                        <button id="confirm_btn" value="default">Add Book</button>
+                        <button id="cancel_btn" value="cancel"formmethod="dialog">Cancel</button>
+                        <button id="clear_btn" value="clear">Clear Form</button>
+                    </div>
+                </form> 
+            </dialog>
+            <button id="show_dialog">Add Book</button>
+        </div>
+        <div id="cards_container">
+            <!--<div class="card">
+                <div class="card_header">
+                    <button class="delete_card_btn">X</button>
+                </div>
+                <div class="card_container">
+                    <div id="book_name">davdscdsv</div>
+                    <div id="card_book_author">By: fsfsf </div>
+                    <div id="card_release_year">Release year: fsfsf</div>
+                    <div id="card_number_of_pages">Number of pages: fsfs</div>
+                    <div id="card_number_of_read_pages">Number of read pages: fsfsfs</div>
+                </div>
+                <div class="card_footer">
+                    <div id="read_x_unread">Mark as Read</div>
+                    <div class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_header">
+                    <button class="delete_card_btn">X</button>
+                </div>
+                <div class="card_container">
+                    <div id="book_name"></div>
+                    <div>
+                        <div>By: </div>
+                        <span id="book_author"></span>
+                    </div>
+                    <div>
+                        <div>Release year: </div>
+                        <span id="release_year"></span>
+                    </div>
+                    <div>
+                        <div>Number of pages: </div>
+                        <span id="number_of_pages">
+                        </span>
+                    </div>
+                    <div>
+                        <div>Number of read pages: </div>
+                        <span id="number_of_read_pages"></span>
+                    </div>
+                </div>
+                <div class="card_footer">
+                    <div id="read_x_unread">Mark us Unread</div>
+                    <div class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_header">
+                    <button class="delete_card_btn">X</button>
+                </div>
+                <div class="card_container">
+                    <div id="book_name"></div>
+                    <div>
+                        <div>By: </div>
+                        <span id="book_author"></span>
+                    </div>
+                    <div>
+                        <div>Release year: </div>
+                        <span id="release_year"></span>
+                    </div>
+                    <div>
+                        <div>Number of pages: </div>
+                        <span id="number_of_pages">
+                        </span>
+                    </div>
+                    <div>
+                        <div>Number of read pages: </div>
+                        <span id="number_of_read_pages"></span>
+                    </div>
+                </div>
+                <div class="card_footer">
+                    <div id="read_x_unread">Read</div>
+                    <div class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_header">
+                    <button class="delete_card_btn">X</button>
+                </div>
+                <div class="card_container">
+                    <div id="book_name"></div>
+                    <div>
+                        <div>By: </div>
+                        <span id="book_author"></span>
+                    </div>
+                    <div>
+                        <div>Release year: </div>
+                        <span id="release_year"></span>
+                    </div>
+                    <div>
+                        <div>Number of pages: </div>
+                        <span id="number_of_pages">
+                        </span>
+                    </div>
+                    <div>
+                        <div>Number of read pages: </div>
+                        <span id="number_of_read_pages"></span>
+                    </div>
+                </div>
+                <div class="card_footer">
+                    <div id="read_x_unread">Read</div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                      </label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_header">
+                    <button class="delete_card_btn">X</button>
+                </div>
+                <div class="card_container">
+                    <div id="book_name"></div>
+                    <div>
+                        <div>By: </div>
+                        <span id="book_author"></span>
+                    </div>
+                    <div>
+                        <div>Release year: </div>
+                        <span id="release_year"></span>
+                    </div>
+                    <div>
+                        <div>Number of pages: </div>
+                        <span id="number_of_pages">
+                        </span>
+                    </div>
+                    <div>
+                        <div>Number of read pages: </div>
+                        <span id="number_of_read_pages"></span>
+                    </div>
+                </div>
+                <div class="card_footer">
+                    <div id="read_x_unread">Read</div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                      </label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_header">
+                    <button class="delete_card_btn">X</button>
+                </div>
+                <div class="card_container">
+                    <div id="book_name"></div>
+                    <div>
+                        <div>By: </div>
+                        <span id="book_author"></span>
+                    </div>
+                    <div>
+                        <div>Release year: </div>
+                        <span id="release_year"></span>
+                    </div>
+                    <div>
+                        <div>Number of pages: </div>
+                        <span id="number_of_pages">
+                        </span>
+                    </div>
+                    <div>
+                        <div>Number of read pages: </div>
+                        <span id="number_of_read_pages"></span>
+                    </div>
+                </div>
+                <div class="card_footer">
+                    <div id="read_x_unread">Read</div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                      </label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_header">
+                    <button class="delete_card_btn">X</button>
+                </div>
+                <div class="card_container">
+                    <div id="book_name"></div>
+                    <div>
+                        <div>By: </div>
+                        <span id="book_author"></span>
+                    </div>
+                    <div>
+                        <div>Release year: </div>
+                        <span id="release_year"></span>
+                    </div>
+                    <div>
+                        <div>Number of pages: </div>
+                        <span id="number_of_pages">
+                        </span>
+                    </div>
+                    <div>
+                        <div>Number of read pages: </div>
+                        <span id="number_of_read_pages"></span>
+                    </div>
+                </div>
+                <div class="card_footer">
+                    <div id="read_x_unread">Not Read</div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                      </label>
+                </div>
+            </div>
+            <div class="card">
+                <div class="card_header">
+                    <button class="delete_card_btn">X</button>
+                </div>
+                <div class="card_container">
+                    <div id="book_name"></div>
+                    <div>
+                        <div>By: </div>
+                        <span id="book_author"></span>
+                    </div>
+                    <div>
+                        <div>Release year: </div>
+                        <span id="release_year"></span>
+                    </div>
+                    <div>
+                        <div>Number of pages: </div>
+                        <span id="number_of_pages">
+                        </span>
+                    </div>
+                    <div>
+                        <div>Number of read pages: </div>
+                        <span id="number_of_read_pages"></span>
+                    </div>
+                </div>
+                <div class="card_footer">
+                    <div id="read_x_unread">Read</div>
+                    <label class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                      </label>
+                </div>
+            </div>
+        </div>-->
+        <!--<div id="cards_container">
+            <div class="card">
+                <div class="card_header">
+                    <div>Add new book</div>
+                    <button>X</button>
+                </div>
+                <div class="card_container">
+                    <div>
+                        <label for="book_title">Book Name</label>
+                        <input type="text" name="book_title" id="book_title">
+                    </div>
+                    <div>
+                        <label for="book_author">Book Author</label>
+                        <input type="text" name="book_author" id="book_author">
+                    </div>
+                    <div>
+                        <label for="publish_date">Publish Date</label>
+                        <input type="date" name="publish_date" id="publish_date">
+                    </div>
+                    <div>
+                        <label for="number_of_pages">Number of Pages</label>
+                        <input type="number" name="number_of_pages" id="number_of_pages">
+                    </div>
+                    <div>
+                        <label for="number_of_read_pages">Number of Read Pages</label>
+                        <input type="number" name="number_of_read_pages" id="number_of_read_pages">
+                    </div>
+                </div>
+                <div class="card_footer">
+                    <button>Add Book</button>
+                    <button>Cancel</button>
+                    <button>Clear Form</button>
+                </div>
+            </div>
+        </div>-->
+    </div>
+    <div id="footer">
+        <button>Clear All</button>
+    </div>
+    <script async src="./script.js"></script>
 </body>
 </html>
