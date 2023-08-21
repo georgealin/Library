@@ -10,7 +10,7 @@
 <body>
     <div id="header">
         <div id="left_header">
-            <img src="" alt="logo">
+            <img src="./book_logo.jpg" alt="logo">
             <div>My Library</div>
         </div>
         <div id="right_header">
@@ -28,14 +28,14 @@
             </div>
             <form action="">
                 <label for="order_by">Order By:</label>
-                <select name="order_by" id="order_by">
-                    <option value="added_date">Added Date</option>
-                    <option value="publish_date">Publish Date</option>
+                <select class="order" name="order_by" id="order_by">
+                    <option value=""></option>
                     <option value="book_name">Book Name</option>
                     <option value="author_name">Author Name</option>
+                    <option value="publish_date">Release Year</option>
                 </select>
-                <select name="order" id="order">
-                    <option value="ascendent">Asc</option>
+                <select name="order" id="order" >
+                    <option value="ascendent" selected="selected">Asc</option>
                     <option value="descendent">Desc</option>
                 </select>
             </form>
@@ -44,21 +44,21 @@
             <dialog id="add_book">
                 <form id="book_dialog">
                     <div class="dialog_header">
-                        <div>Add new book</div>
                         <button id="xBtn">X</button>
+                        <div>Add new book</div>
                     </div>
                     <div class="dialog_container">
                         <div>
-                            <label for="dialog_book_title">Book Name</label>
-                            <input type="text" name="book_title" id="dialog_book_title">
+                            <label for="dialog_book_title">Book Name *</label>
+                            <input type="text" name="book_title" id="dialog_book_title" placeholder="Book Name">
                         </div>
                         <div>
-                            <label for="dialog_book_author">Book Author</label>
-                            <input type="text" name="book_author" id="dialog_book_author">
+                            <label for="dialog_book_author">Book Author *</label>
+                            <input type="text" name="book_author" id="dialog_book_author" placeholder="John Doe">
                         </div>
                         <div>
-                            <label for="dialog_publish_date">Publish Date</label>
-                            <input type="date" name="publish_date" id="dialog_publish_date">
+                            <label for="dialog_publish_date">Publish Year</label>
+                            <input type="number" name="publish_date" id="dialog_publish_date" placeholder="YYYY">
                         </div>
                         <div>
                             <label for="dialog_number_of_pages">Number of Pages</label>
@@ -328,6 +328,12 @@
                         <span class="slider round"></span>
                       </label>
                 </div>
+            </div>
+            <div id="read_x_unread">Mark as Read</div>
+                    <div class="switch">
+                        <input type="checkbox">
+                        <span class="slider round"></span>
+                    </div>
             </div>
         </div>-->
         <!--<div id="cards_container">

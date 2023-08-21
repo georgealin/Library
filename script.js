@@ -13,21 +13,6 @@ function addBookToLibrary(Book) {
     myLibrary.push(Book)
 }
 
-function displayAllBooks() {
-    for (const book of myLibrary) {
-        displayBook(book);
-        console.log('------------');
-    }
-}
-
-displayAllBooks();
-
-function displayBook(book) {
-    for (const property in book) {
-        console.log(`${property}: ${book[property]}`);
-    }
-}
-
 const showButton = document.getElementById('show_dialog');
 const dialog = document.querySelector('dialog');
 const xButton = document.getElementById('xBtn');
