@@ -24,6 +24,11 @@ body {
     font-weight: bold;
 }
 
+#left_header img {
+    width: 6vw;
+    border-radius: 45px;
+}
+
 #right_header {
     display: flex;
     align-items: center;
@@ -99,7 +104,7 @@ body {
 
 #cards_container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 0.5fr));
     grid-template-rows: repeat(auto-fit, minmax(200px, 0.2fr));
     gap: 30px;
     color: white;
@@ -130,6 +135,8 @@ body {
     background-color: transparent;
     color: white;
     font-weight: bold;
+    border: none;
+    outline:none;
 }
 
 .card_footer {
@@ -154,6 +161,62 @@ margin-top: 15px;
     background-color: rgb(128, 128, 128);
     color: red;
     font-weight: bold;
+}
+
+#book_dialog {
+    height: 90vh;
+    width: 40vw;
+    display: grid;
+    grid-template-rows: 0.5fr 2fr 0.5fr;
+    row-gap: 20px;
+}
+
+#confirm_btn,
+#cancel_btn,
+#clear_btn {
+    width: 30%;
+}
+
+.dialog_header {
+    display: grid;
+    grid-template-rows: 0.2fr 1fr;
+}
+
+.dialog_header div {
+    font-size: 5vh;
+    font-weight: bold;
+    text-align: center;
+    text-justify: center;
+}
+
+#xBtn {
+    border: none;
+    outline:none;
+    background-color: transparent;
+    justify-self: end;
+}
+
+.dialog_container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.dialog_container div {
+    display: flex;
+    flex-direction: column;
+}
+
+.dialog_container div label {
+    text-align: center;
+    font-size: 3vh;
+}
+
+.dialog_footer {
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
 }
 
 .switch {
@@ -181,7 +244,7 @@ margin-top: 15px;
     transition: .4s;
   }
   
-  .slider:before {
+  .switch .slider:before {
     position: absolute;
     content: "";
     height: 15px;
@@ -214,4 +277,40 @@ margin-top: 15px;
   
   .slider.round:before {
     border-radius: 50%;
+  }
+
+  @media only screen and (max-width: 700px) {
+    body {
+      margin: 0px;
+      padding: 0;
+    }
+    
+    #read,
+    #not_read {
+        height: 8vh;
+    }
+
+    #show_dialog {
+        width: 80vw;
+        height: 8vh;
+    }
+
+    #book_dialog {
+        height: 80vh;
+        width: 80vw;
+    }
+
+    #cards_container {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        width: 90vw;
+        justify-self: center;
+    }
+
+    #left_header img {
+        width: 10vh;
+        border-radius: 45px;
+    }
   }
