@@ -13,6 +13,7 @@ function addBookToLibrary(Book) {
     myLibrary.push(Book)
 }
 
+
 const showButton = document.getElementById('show_dialog');
 const dialog = document.querySelector('dialog');
 const xButton = document.getElementById('xBtn');
@@ -249,3 +250,6 @@ function order () {
     emptyCardsContainer();
     createBookCard();
 }
+
+const clearAllButton = document.getElementById('clearAll_btn');
+clearAllButton.addEventListener('click', emptyCardsContainer);
