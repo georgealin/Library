@@ -73,9 +73,10 @@ showButton.addEventListener('click', () => {
   });
 
 xButton.addEventListener('click', () => {
+    event.preventDefault();
     clearForm();
     dialog.close();
-});
+})
 
 cancelButton.addEventListener('click', () => {
     clearForm();
@@ -84,11 +85,21 @@ cancelButton.addEventListener('click', () => {
 
 confirmButton.addEventListener("click", (event) => {
     event.preventDefault();
-    addBook();
-    createBookCard(book);
-    clearForm();
-    dialog.close(); 
+    if (isEmpty(document.getElementById('dialog_book_title').value) &&
+    isEmpty(this.author = document.getElementById('dialog_book_author').value)) {
+        alert('Please write the book name or the author name!');
+    } else {
+        addBook();
+        emptyCardsContainer();
+        createBookCard(book);
+        clearForm();
+        dialog.close(); 
+    }
   });
+
+function isEmpty(value) {
+    return (value == null || (typeof value === "string" && value.trim().length === 0));
+}  
 
 function clearForm () {
     document.getElementById('book_dialog').reset();
@@ -99,19 +110,25 @@ clearButton.addEventListener('click', clearForm());
 let book = document.querySelector('form');
 
 function addBook (book) {
-    this.name = document.getElementById('dialog_book_title').value;
-    this.author = document.getElementById('dialog_book_author').value;
+    this.name = document.getElementById('dialog_book_title').value.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());;
+    this.author = document.getElementById('dialog_book_author').value.replace(/(^\w{1})|(\s+\w{1})/g, letter => letter.toUpperCase());;
     this.releaseYear = document.getElementById('dialog_publish_date').value;
     this.pages = document.getElementById('dialog_number_of_pages').value;
     this.pagesRead = document.getElementById('dialog_number_of_read_pages').value;
     this.read = document.getElementById('readNotRead').value;
-
+    
     const newBook = new Book(name, author, releaseYear, pages, pagesRead, read);
     addBookToLibrary(newBook);
     console.log(myLibrary);
 }
 
+function emptyCardsContainer () {
+    const cardsContainer = document.getElementById('cards_container');
+    cardsContainer.replaceChildren();
+}
+
 function createBookCard () {
+    myLibrary.forEach((book) => {
     const cardsContainer = document.getElementById('cards_container');
     const bookCard = document.createElement('div');
     bookCard.classList.add('card');
@@ -142,14 +159,14 @@ function createBookCard () {
     const bookCardSlider = document.createElement('span');
     bookCardSlider.classList.add('slider', 'round');
 
-    bookCardBookName.textContent = `${this.name}`;
-    bookCardBookAuthor.textContent = `By: ${this.author}`;
-    bookCardReleaseYear.textContent = `Release date: ${this.releaseYear}`;
-    bookCardNumberOfPages.textContent = `Number of pages: ${this.pages}`;
-    bookCardNumberOfReadPages.textContent = `Number of read pages: ${this.pagesRead}`;
+    bookCardBookName.textContent = `${book.name}`;
+    bookCardBookAuthor.textContent = `By: ${book.author}`;
+    bookCardReleaseYear.textContent = `Publish year: ${book.releaseYear}`;
+    bookCardNumberOfPages.textContent = `Number of pages: ${book.pages}`;
+    bookCardNumberOfReadPages.textContent = `Number of read pages: ${book.pagesRead}`;
     bookCardDeleteButton.textContent = 'X'
 
-    if (this.read == 'Read') {
+    if (book.read == 'Read') {
         active = true;
         bookCard.style.background = 'linear-gradient(135deg, #23A4A4 0%, #2388CB 49%, #144E75 100%)';
         bookCardReadUnread.textContent = 'Mark as Unread';
@@ -176,9 +193,59 @@ function createBookCard () {
 
     bookCardDeleteButton.addEventListener('click', removeCard);
     bookCardSwitch.addEventListener('click', changeStatus);
+})
 }
 
 
+const orderCards =  document.querySelector('#order_by');
+const ascDsc = document.querySelector('#order');
+orderCards.addEventListener('change', orderBy);
+ascDsc.addEventListener('change', order)
 
+function orderBy() {
+    if (orderCards.value === 'book_name') {
+        if (ascDsc.value === 'ascendent') {
+            myLibrary.sort((a, b) => (a.name < b.name) ? 1 : (a.name === b.name) ? ((a.author < b.author) ? 1 : -1) : -1 );
+        } else if (ascDsc.value === 'descendent') {
+            myLibrary.sort((a, b) => (a.name < b.name) ? -1 : (a.name === b.name) ? ((a.author < b.author) ? 1 : -1) : -1 );
+        };   
+    } else if (orderCards.value === 'author_name') {
+        if (ascDsc.value === 'ascendent') {
+            myLibrary.sort((a, b) => (a.author < b.author) ? 1 : (a.author === b.author) ? ((a.name < b.name) ? 1 : -1) : -1 );
+        } else if (ascDsc.value === 'descendent') {
+            myLibrary.sort((a, b) => (a.author < b.author) ? -1 : (a.author === b.author) ? ((a.name < b.name) ? 1 : -1) : -1 );
+        }
+    } else if (orderCards.value === 'publish_date') {
+        if (ascDsc.value === 'ascendent') {
+            myLibrary.sort((a, b) => (a.releaseYear < b.releaseYear) ? 1 : (a.releaseYear === b.releaseYear) ? ((a.name < b.name) ? 1 : -1) : -1 );
+        } else if (ascDsc.value === 'descendent') {
+            myLibrary.sort((a, b) => (a.releaseYear < b.releaseYear) ? -1 : (a.releaseYear === b.releaseYear) ? ((a.name < b.name) ? 1 : -1) : -1 );
+        }
+    };
+    emptyCardsContainer();
+    createBookCard();
+};
 
-
+function order () {
+    if (orderCards.value === 'book_name') {
+        if (ascDsc.value === 'ascendent') {
+            myLibrary.sort((a, b) => (a.name < b.name) ? 1 : (a.name === b.name) ? ((a.author < b.author) ? 1 : -1) : -1 );  
+        } else {
+            myLibrary.sort((a, b) => (a.name < b.name) ? -1 : (a.name === b.name) ? ((a.author < b.author) ? 1 : -1) : -1 ); 
+        }; 
+    } else if (orderCards.value === 'author_name') {
+        if (ascDsc.value === 'ascendent') {
+            myLibrary.sort((a, b) => (a.author < b.author) ? 1 : (a.author === b.author) ? ((a.name < b.name) ? 1 : -1) : -1 );
+        } else {
+            myLibrary.sort((a, b) => (a.author < b.author) ? -1 : (a.author === b.author) ? ((a.name < b.name) ? 1 : -1) : -1 );
+        };
+    } else if (orderCards.value === 'publish_date') {
+        if (ascDsc.value === 'ascendent') {
+            myLibrary.sort((a, b) => (a.releaseYear < b.releaseYear) ? 1 : (a.releaseYear === b.releaseYear) ? ((a.name < b.name) ? 1 : -1) : -1 );
+        } else {
+            myLibrary.sort((a, b) => (a.releaseYear < b.releaseYear) ? -1 : (a.releaseYear === b.releaseYear) ? ((a.name < b.name) ? 1 : -1) : -1 );
+        }
+    };
+    emptyCardsContainer();
+    createBookCard();
+}
