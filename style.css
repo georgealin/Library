@@ -302,6 +302,7 @@ margin-top: 15px;
 
     #cards_container {
         grid-template-columns: 1fr;
+        grid-template-rows: repeat(auto-fit, minmax(280px, 0.2fr));
     }
 
     .card {
